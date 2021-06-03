@@ -1,0 +1,51 @@
+<h3>
+  Edit Employee
+</h3>
+<form (ngSubmit)="onEditEmployee(formEdit);" #formEdit="ngForm">
+  <ul >
+      <label>Employee Name: </label>
+       <a [ngStyle]="{color: 'red'} ">{{name}}</a>
+       <p>
+      <label>Gender</label>
+      <input type = "radio" value = "male"  [(ngModel)]="employee.gender" name = "gender" required/>Male
+      <input type = "radio" value = "female" [(ngModel)]="employee.gender"  name = "gender" required/>Female
+       </p>
+    <p>
+     <label>Level</label>
+      <select [(ngModel)]="employee.level" name="levelEmployee" required>
+        <option *ngFor="let item of levelDropdown" value={{item.id}}>
+          {{item.name}}</option>
+      </select>
+    </p>
+    <p>
+     <label>Birthday</label>
+         <input type="date" name="birthday" [(ngModel)]="employee.birthDate" required />
+    </p>
+    <button (click)="isShowAdd">Edit Employee</button>
+  </ul>
+</form>
+
+<ul *ngIf="employees.length > 0">
+  <table>
+    <thead [ngStyle]="{color: 'blue'}">
+      <th><h3>Employee Name</h3></th>
+      <th><h3>Employee Gender</h3></th>
+      <th><h3>Employee Level</h3></th>
+      <th><h3>Employee Birthday</h3></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td><h4>{{employee.name}}</h4></td>
+        <a *ngIf="employee.gender === 'male'"> <span><img
+            src="assets/images/male.png" height="35" width="35"></span>
+        </a>
+        <a *ngIf="employee.gender === 'female'"> <span><img
+            src="assets/images/female.png" height="35" width="35"></span>
+        </a>
+        <td><h4>{{employee.level}}</h4></td>
+        <td><h4>{{employee.birthDate | date}}</h4></td>
+      </tr>
+    </tbody>
+  </table>
+</ul>
+

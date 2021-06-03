@@ -1,0 +1,26 @@
+<h3>
+  Details Page
+</h3>
+<ul *ngIf="employees.length > 0">
+  <table>
+    <thead [ngStyle]="{color: 'blue'}">
+      <th><h3>Employee Name</h3></th>
+      <th><h3>Employee Gender</h3></th>
+      <th><h3>Employee Level</h3></th>
+      <th><h3>Employee Birthday</h3></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td><h4>{{employee.name}}</h4></td>
+        <a *ngIf="employee.gender === 'male'"> <span><img
+            src="assets/images/male.png" height="35" width="35"></span>
+        </a>
+        <a *ngIf="employee.gender === 'female'"> <span><img
+            src="assets/images/female.png" height="35" width="35"></span>
+        </a>
+        <td><h4>{{employee.level}}</h4></td>
+        <td><h4>{{employee.birthDate | date}}</h4></td>
+      </tr>
+    </tbody>
+  </table>
+</ul>

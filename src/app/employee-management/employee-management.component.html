@@ -1,0 +1,39 @@
+<p>Work with employee</p>
+
+<form (ngSubmit)="onAdd();" #formAdd="ngForm">
+ <label>Add New Employee Here</label>
+  <a *ngIf="isShow">
+    <button (click)="isShow">Add New</button>
+  </a>
+  <a>
+    <button (click)="isShow" *ngIf="!isShow">Add New</button>
+  </a>
+</form>
+<form (ngSubmit)="onSearch(formSearch);" #formSearch="ngForm">
+  <label>Search Employee Here</label>
+  <a *ngIf="isShow">
+    <button (click)="isShow">Search</button>
+  </a>
+  <a>
+    <button (click)="isShow = true" *ngIf="!isShow">Search</button>
+  </a>
+</form>
+<form (ngSubmit)="onBackHome();" #formBack="ngForm">
+  <label>Home</label>
+  <a *ngIf="isShow">
+    <button (click)="isShow">Back</button>
+  </a>
+  <a>
+    <button (click)="isShow = true" *ngIf="!isShow">Back</button>
+  </a>
+</form>
+<form (ngSubmit)="onExercise();" #formExercise="ngForm">
+  <label>Exercise</label>
+  <a *ngIf="isShow">
+    <button (click)="isShow">Exercise</button>
+  </a>
+  <a>
+    <button (click)="isShow = true" *ngIf="!isShow">Exercise</button>
+  </a>
+</form>
+<router-outlet></router-outlet>

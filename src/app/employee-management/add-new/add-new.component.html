@@ -1,0 +1,49 @@
+<h3>Add New Employee</h3>
+<form novalidate #fieldMappingForm="ngForm"
+  (ngSubmit)="onAddNew(formAdd);" #formAdd="ngForm">
+  <ul>
+
+    <label>Employee Name</label>
+    <input placeholder="Name" name="nameEmployee"
+      [(ngModel)]="employee.name" #nameValidation="ngModel" required />
+    <div *ngIf="nameValidation.errors?.required"
+      [ngStyle]="{color: 'red'} ">required</div>
+    <br />
+
+    <label>Gender</label>
+    <input type="radio" value="male" checked
+      [(ngModel)]="employee.gender" name="gender"
+      #genderValidation="ngModel" required />Male
+    <input type="radio" value="female" [(ngModel)]="employee.gender"
+      name="gender" #genderValidation="ngModel" required />Female
+    <div *ngIf="genderValidation.errors?.required"
+      [ngStyle]="{color: 'red'} ">required</div>
+    <br />
+
+    <label>Level</label>
+    <select [(ngModel)]="employee.level"
+      (change)="onChange($event.target.value)" name="levelEmployee"
+      #levelValidation="ngModel" required>
+      <option *ngFor="let country of levelDropdown" value={{country.id}}>{{country.name}}</option>
+    </select>
+    <div *ngIf="levelValidation.errors?.required"
+      [ngStyle]="{color: 'red'} ">required</div>
+    <br />
+
+    <label>Birthday</label>
+    <input type="date" name="birthday" [(ngModel)]="employee.birthday"
+      #dateValidation="ngModel" required />
+    <div *ngIf="dateValidation.errors?.required"
+      [ngStyle]="{color: 'red'} ">required</div>
+    <br />
+
+    <button (click)="isShowAdd"
+      [disabled]="!fieldMappingForm.form.valid 
+      || nameValidation.errors?.required
+      || levelValidation.errors?.required
+      || genderValidation.errors?.required
+      || dateValidation.errors?.required">Add
+      New Employee</button>
+  </ul>
+</form>
+
